@@ -11,19 +11,19 @@ async function run(): Promise<void> {
     })
 
     for (const tag of targetImages) {
-      await retag(sourceImage, tag)
-      await push(tag)
+      retag(sourceImage, tag)
+      push(tag)
     }
   } catch (error) {
     core.setFailed(error.message)
   }
 }
 
-const push = async (image: string): Promise<void> => {
+const push = (image: string): void => {
   cp.execSync(`docker push ${image} 2>&1`)
 }
 
-const retag = async (src: string, dst: string): Promise<void> => {
+const retag = (src: string, dst: string): void => {
   core.info(`Retag Image`)
   cp.execSync(`docker tag ${src} ${dst} 2>&1`)
 }
