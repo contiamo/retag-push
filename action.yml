@@ -1,11 +1,13 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Docker Retag and Push'
+description: 'Retag and push a Docker image in the local Docker'
+author: 'Contiamo GmbH'
 inputs:
-  milliseconds: # change this
+  source:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'source image to re-tag'
+  target:
+    required: true
+    description: 'target image tag'
 runs:
   using: 'node12'
   main: 'dist/index.js'
