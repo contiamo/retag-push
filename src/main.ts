@@ -10,8 +10,7 @@ async function run(): Promise<void> {
       required: true
     })
 
-    for (let index = 0; index < targetImages.length; index++) {
-      const tag = targetImages[index]
+    for (const tag of targetImages) {
       await retag(sourceImage, tag)
       await push(tag)
     }
@@ -42,7 +41,7 @@ export async function getInputList({
 }: GetInputListProps): Promise<string[]> {
   const res: string[] = []
 
-  const items = core.getInput(name, {required: required})
+  const items = core.getInput(name, {required})
 
   for (const output of (await csvparse(items, {
     columns: false,
