@@ -47,11 +47,13 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const sourceImage = core.getInput('source', { required: true });
-            const targetImages = yield getInputList({ name: 'target', required: true });
-            for (let index = 0; index < targetImages.length; index++) {
-                const tag = targetImages[index];
-                yield retag(sourceImage, tag);
-                yield push(tag);
+            const targetImages = yield getInputList({
+                name: 'target',
+                required: true
+            });
+            for (const tag of targetImages) {
+                retag(sourceImage, tag);
+                push(tag);
             }
         }
         catch (error) {
@@ -59,23 +61,23 @@ function run() {
         }
     });
 }
-const push = (image) => __awaiter(void 0, void 0, void 0, function* () {
+const push = (image) => {
     cp.execSync(`docker push ${image} 2>&1`);
-});
-const retag = (src, dst) => __awaiter(void 0, void 0, void 0, function* () {
+};
+const retag = (src, dst) => {
     core.info(`Retag Image`);
     cp.execSync(`docker tag ${src} ${dst} 2>&1`);
-});
+};
 function getInputList({ name, ignoreComma, required }) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = [];
-        const items = core.getInput(name, { required: required });
-        for (let output of (yield sync_1.default(items, {
+        const res = [];
+        const items = core.getInput(name, { required });
+        for (const output of (yield sync_1.default(items, {
             columns: false,
             relaxColumnCount: true,
             skipLinesWithEmptyValues: true
         }))) {
-            if (output.length == 1) {
+            if (output.length === 1) {
                 res.push(output[0]);
                 continue;
             }
