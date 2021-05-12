@@ -62,11 +62,12 @@ function run() {
     });
 }
 const push = (image) => {
-    cp.execSync(`docker push ${image} 2>&1`);
+    core.info(`Push new tag`);
+    cp.execSync(`docker push ${image}`, { stdio: 'inherit' });
 };
 const retag = (src, dst) => {
-    core.info(`Retag Image`);
-    cp.execSync(`docker tag ${src} ${dst} 2>&1`);
+    core.info(`Retag image`);
+    cp.execSync(`docker tag ${src} ${dst}`, { stdio: 'inherit' });
 };
 function getInputList({ name, ignoreComma, required }) {
     return __awaiter(this, void 0, void 0, function* () {
