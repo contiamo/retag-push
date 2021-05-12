@@ -20,12 +20,13 @@ async function run(): Promise<void> {
 }
 
 const push = (image: string): void => {
-  cp.execSync(`docker push ${image} 2>&1`)
+  core.info(`Push new tag`)
+  cp.execSync(`docker push ${image}`, {stdio: 'inherit'})
 }
 
 const retag = (src: string, dst: string): void => {
-  core.info(`Retag Image`)
-  cp.execSync(`docker tag ${src} ${dst} 2>&1`)
+  core.info(`Retag image`)
+  cp.execSync(`docker tag ${src} ${dst}`, {stdio: 'inherit'})
 }
 
 export interface GetInputListProps {
