@@ -35,7 +35,7 @@
   "devDependencies": {
     "@types/csv-parse": "^1.2.2",
     "@types/jest": "^26.0.23",
-    "@types/node": "^15.0.2",
+    "@types/node": "^15.9.0",
     "@types/tmp": "^0.2.0",
     "@typescript-eslint/parser": "^4.23.0",
     "@vercel/ncc": "^0.28.5",
