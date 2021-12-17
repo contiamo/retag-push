@@ -36,7 +36,7 @@
     "@types/csv-parse": "^1.2.2",
     "@types/jest": "^26.0.23",
     "@types/node": "^15.0.2",
-    "@types/tmp": "^0.2.0",
+    "@types/tmp": "^0.2.3",
     "@typescript-eslint/parser": "^4.33.0",
     "@vercel/ncc": "^0.28.5",
     "eslint": "^7.32.0",
